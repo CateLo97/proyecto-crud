@@ -3,6 +3,9 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const flash= require('express-flash');
+
+
 const indexRoutes = require('./routes/index'); // Importar las rutas
 const notesRoutes = require('./routes/notes');
 const usersRoutes = require('./routes/users');
@@ -14,7 +17,7 @@ require('./database');
 // Settings
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
+//app.set('view engine', 'handlebars');
 
 // Configurar Handlebars como motor de plantillas
 app.engine('.hbs', engine({
@@ -34,7 +37,16 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use(flash());
+
+
 // Global Variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+});
+
 
 // Routes
 app.use(indexRoutes); // Usar las rutas importadas

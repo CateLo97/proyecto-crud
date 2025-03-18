@@ -1,10 +1,17 @@
+{{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{text}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/each}}
+
 <div class="col-md-4 mx-auto">
     <div class="card shadow-sm">
         <div class="card-header text-center bg-light text-black">
             <h3>New Note</h3>
         </div>
         <div class="card-body">
-            <form action="/" method="POST">
+            <form action="/notes/new-note" method="POST">
                 <div class="form-group mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input 
@@ -13,9 +20,7 @@
                         name="title" 
                         class="form-control" 
                         placeholder="Enter your note title" 
-                        autofocus 
-                        required
-                    >
+                        autofocus>
                 </div>
                 <div class="form-group mb-3">
                     <label for="description" class="form-label">Description</label>
@@ -24,9 +29,7 @@
                         name="description" 
                         class="form-control" 
                         placeholder="Enter the note description" 
-                        rows="4" 
-                        required
-                    ></textarea>
+                        rows="4"></textarea>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">
