@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <p>Navegacion</p>
+    {{> navegation }}
 
-    <main class="container">
-        {{> messages}}
-
+    <main class="container p-4">
+        {{> messages }}
+        {{> errors }}
         {{{ body }}}
     </main>
 
